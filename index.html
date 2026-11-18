@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klinik Pratama Sehat Nusantara | Luxury Healthcare & Wellness</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap 5.3 CSS for structured components & Grid/Modals -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            900: '#064e3b',
+                            950: '#022c22',
+                        },
+                        gold: {
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            accent: '#d4af37',
+                            light: '#fef9c3',
+                        },
+                        slate: {
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Outfit"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --gold-accent: #d4af37;
+            --emerald-deep: #064e3b;
+            --slate-rich: #0f172a;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b1329;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Glassmorphism Luxury */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fef08a 0%, #d4af37 50%, #ca8a04 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border {
+            border-color: rgba(212, 175, 55, 0.35) !important;
+        }
+
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+        }
+
+        .emerald-glow {
+            box-shadow: 0 0 30px rgba(6, 78, 59, 0.4);
+        }
+
+        /* Custom Buttons */
+        .btn-gold {
+            background: linear-gradient(135deg, #eab308 0%, #d4af37 100%);
+            color: #022c22;
+            font-weight: 600;
+            border-radius: 14px;
+            padding: 0.75rem 1.75rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+            color: #022c22;
+        }
+
+        .btn-outline-gold {
+            border: 1.5px solid var(--gold-accent);
+            color: var(--gold-accent);
+            background: transparent;
+            border-radius: 14px;
+            padding: 0.75rem 1.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-outline-gold:hover {
+            background: rgba(212, 175, 55, 0.15);
+            color: #fef08a;
+            border-color: #fef08a;
+            transform: translateY(-2px);
+        }
+
+        /* Form Inputs Luxury */
+        .luxury-input {
+            background: rgba(2, 6, 23, 0.6) !important;
+            border: 1.5px solid rgba(212, 175, 55, 0.25) !important;
+            color: #ffffff !important;
+            border-radius: 12px !important;
+            padding: 0.75rem 1rem !important;
+        }
+        .luxury-input:focus {
+            border-color: #d4af37 !important;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2) !important;
+            background: rgba(2, 6, 23, 0.8) !important;
+        }
+        .luxury-input option {
+            background-color: #0f172a;
+            color: #ffffff;
+        }
+
+        /* View routing animations */
+        .view-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .view-section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #064e3b;
+            border-radius: 4px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-950 text-slate-100">
+
+    <!-- Top Luxury Announcement & Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#beranda" onclick="switchView('beranda')" class="flex items-center gap-3 group cursor-pointer">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-900 to-emerald-950 border border-gold-accent/40 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+                        <i data-lucide="crown" class="w-6 h-6 text-gold-accent"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-gold-accent font-semibold block">Private Clinic & Wellness</span>
+                        <span class="text-xl font-bold tracking-tight text-white font-display">Sehat Nusantara</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-1 bg-slate-900/60 p-1.5 rounded-full border border-gold-accent/20">
+                    <button onclick="switchView('beranda')" id="nav-beranda" class="nav-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 text-slate-300 hover:text-white">Beranda</button>
+                    <button onclick="switchView('layanan')" id="nav-layanan" class="nav-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 text-slate-300 hover:text-white">Layanan</button>
+                    <button onclick="switchView('dokter')" id="nav-dokter" class="nav-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 text-slate-300 hover:text-white">Jadwal Dokter</button>
+                    <button onclick="switchView('antrean')" id="nav-antrean" class="nav-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 text-slate-300 hover:text-white">Dashboard Antrean</button>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="flex items-center gap-4">
+                    <button onclick="switchView('pendaftaran')" class="btn-gold hidden sm:inline-flex items-center gap-2 text-sm">
+                        <i data-lucide="calendar-plus" class="w-4 h-4"></i>
+                        <span>Daftar Online</span>
+                    </button>
+                    <!-- Mobile Menu Toggle -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-slate-900 border border-gold-accent/30 text-gold-accent">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-950/95 border-b border-gold-accent/30 px-6 py-5 space-y-3 backdrop-blur-2xl">
+            <button onclick="switchView('beranda'); toggleMobileMenu();" class="block w-full text-left py-2.5 text-base font-medium text-slate-200 hover:text-gold-accent">Beranda</button>
+            <button onclick="switchView('layanan'); toggleMobileMenu();" class="block w-full text-left py-2.5 text-base font-medium text-slate-200 hover:text-gold-accent">Layanan</button>
+            <button onclick="switchView('dokter'); toggleMobileMenu();" class="block w-full text-left py-2.5 text-base font-medium text-slate-200 hover:text-gold-accent">Jadwal Dokter</button>
+            <button onclick="switchView('antrean'); toggleMobileMenu();" class="block w-full text-left py-2.5 text-base font-medium text-slate-200 hover:text-gold-accent">Dashboard Antrean</button>
+            <button onclick="switchView('pendaftaran'); toggleMobileMenu();" class="w-full btn-gold text-center py-3 mt-2 flex items-center justify-center gap-2">
+                <i data-lucide="calendar-plus" class="w-4 h-4"></i> Daftar Online
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow pt-28 pb-16">
+
+        <!-- =========================================================
+             1. HOME VIEW (BERANDA)
+             ========================================================= -->
+        <section id="view-beranda" class="view-section active">
+            <!-- Luxury Hero Section -->
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16">
+                <div class="absolute inset-0 bg-gradient-to-r from-emerald-900/30 to-slate-900/40 rounded-3xl blur-3xl -z-10"></div>
+                
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-8">
+                        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-emerald-950/80 border border-gold-accent/30 text-gold-accent text-xs font-semibold uppercase tracking-widest gold-glow">
+                            <i data-lucide="award" class="w-4 h-4"></i>
+                            <span>Premier Healthcare Excellence • Kediri</span>
+                        </div>
+
+                        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight font-display">
+                            Mendefinisikan Ulang <br>
+                            <span class="gold-gradient-text">Kemewahan & Kesehatan</span>
+                        </h1>
+
+                        <p class="text-lg text-slate-300 leading-relaxed font-light" id="sapaan-pengguna">
+                            Klinik Pratama Sehat Nusantara hadir dengan standar pelayanan medis privasi tertinggi, menghadirkan kenyamanan paripurna bagi Anda dan keluarga di Kota Kediri.
+                        </p>
+
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <button onclick="switchView('pendaftaran')" class="btn-gold flex items-center gap-3 text-base">
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                                <span>Pendaftaran Pasien Online</span>
+                            </button>
+                            <button onclick="switchView('dokter')" class="btn-outline-gold flex items-center gap-3 text-base">
+                                <i data-lucide="stethoscope" class="w-5 h-5"></i>
+                                <span>Jadwal Dokter Spesialis</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual Card -->
+                    <div class="lg:col-span-5">
+                        <div class="glass-card rounded-3xl p-6 sm:p-8 relative space-y-6">
+                            <div class="flex items-center justify-between pb-4 border-b border-gold-accent/20">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-emerald-900/60 border border-gold-accent/40 flex items-center justify-center text-gold-accent">
+                                        <i data-lucide="heart-pulse" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-white">Live Klinik Status</h3>
+                                        <p class="text-xs text-emerald-400 flex items-center gap-1.5 mt-0.5">
+                                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Operasional Buka
+                                        </p>
+                                    </div>
+                                </div>
+                                <span class="px-3 py-1 rounded-full text-xs bg-gold-accent/10 text-gold-accent border border-gold-accent/30 font-semibold">VIP Lounge</span>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="p-4 rounded-2xl bg-slate-900/80 border border-gold-accent/20 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-lg bg-emerald-950 flex items-center justify-center text-gold-accent">
+                                            <i data-lucide="user-check" class="w-4 h-4"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-semibold text-white">Poliklinik Umum & Gigi</div>
+                                            <div class="text-xs text-slate-400">Dokter Spesialis Siap Melayani</div>
+                                        </div>
+                                    </div>
+                                    <span class="text-emerald-400 text-sm font-bold">Tersedia</span>
+                                </div>
+                            </div>
+
+                            <button onclick="switchView('pendaftaran')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-900 to-emerald-950 border border-gold-accent/40 text-gold-accent font-semibold flex items-center justify-center gap-2 hover:bg-emerald-900 transition-all">
+                                <span>Ambil Nomor Antrean Sekarang</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             2. SERVICES VIEW (LAYANAN)
+             ========================================================= -->
+        <section id="view-layanan" class="view-section py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                <div class="text-center max-w-3xl mx-auto space-y-4">
+                    <span class="text-xs uppercase tracking-widest text-gold-accent font-semibold px-4 py-1.5 rounded-full bg-emerald-950 border border-gold-accent/30">Fasilitas Premium</span>
+                    <h1 class="text-4xl font-bold font-display text-white">Daftar Lengkap Poliklinik & Layanan Medis</h1>
+                    <p class="text-slate-300">Setiap poliklinik didukung oleh tenaga dokter spesialis dan perawat berdedikasi tinggi.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Detail Poli Umum -->
+                    <div class="glass-card rounded-3xl p-8 border border-gold-accent/30 space-y-6">
+                        <div class="flex items-center justify-between">
+                            <div class="w-16 h-16 rounded-2xl bg-emerald-950 border border-gold-accent/40 flex items-center justify-center text-gold-accent">
+                                <i data-lucide="stethoscope" class="w-8 h-8"></i>
+                            </div>
+                            <span class="px-4 py-1.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-xs font-semibold">Tersedia Setiap Hari</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white mb-2 font-display">Poliklinik Umum</h2>
+                            <p class="text-slate-300 text-sm leading-relaxed">Pusat layanan primer komprehensif untuk diagnosis penyakit akut, manajemen penyakit kronis (Hipertensi, Diabetes Mellitus), serta pemeriksaan kesehatan berkala.</p>
+                        </div>
+                        <div class="pt-4 border-t border-gold-accent/20 flex items-center justify-between">
+                            <span class="text-xs text-slate-400">Estimasi Layanan: 15-20 Menit</span>
+                            <button onclick="pilihPoliDanDaftar('Umum')" class="btn-gold text-sm py-2.5 px-5">Daftar Poli Umum</button>
+                        </div>
+                    </div>
+
+                    <!-- Detail Poli Gigi -->
+                    <div class="glass-card rounded-3xl p-8 border border-gold-accent/30 space-y-6">
+                        <div class="flex items-center justify-between">
+                            <div class="w-16 h-16 rounded-2xl bg-emerald-950 border border-gold-accent/40 flex items-center justify-center text-gold-accent">
+                                <i data-lucide="smile" class="w-8 h-8"></i>
+                            </div>
+                            <span class="px-4 py-1.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-xs font-semibold">Peralatan Modern</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white mb-2 font-display">Poliklinik Gigi</h2>
+                            <p class="text-slate-300 text-sm leading-relaxed">Perawatan gigi dan rongga mulut dengan teknologi sinar UV terkini. Melayani scaling karang gigi, penambalan sewarna gigi, dan perawatan saluran akar.</p>
+                        </div>
+                        <div class="pt-4 border-t border-gold-accent/20 flex items-center justify-between">
+                            <span class="text-xs text-slate-400">Estimasi Layanan: 20-30 Menit</span>
+                            <button onclick="pilihPoliDanDaftar('Gigi')" class="btn-gold text-sm py-2.5 px-5">Daftar Poli Gigi</button>
+                        </div>
+                    </div>
+
+                    <!-- Detail Poli KIA -->
+                    <div class="glass-card rounded-3xl p-8 border border-gold-accent/30 space-y-6">
+                        <div class="flex items-center justify-between">
+                            <div class="w-16 h-16 rounded-2xl bg-emerald-950 border border-gold-accent/40 flex items-center justify-center text-gold-accent">
+                                <i data-lucide="heart-handshake" class="w-8 h-8"></i>
+                            </div>
+                            <span class="px-4 py-1.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-xs font-semibold">Eksklusif Ibu & Anak</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white mb-2 font-display">Kesehatan Ibu & Anak (KIA)</h2>
+                            <p class="text-slate-300 text-sm leading-relaxed">Pelayanan antenatal care (ANC) komprehensif bagi ibu hamil, imunisasi dasar dan lanjutan anak, pemantauan grafik tumbuh kembang anak, serta konsultasi KB.</p>
+                        </div>
+                        <div class="pt-4 border-t border-gold-accent/20 flex items-center justify-between">
+                            <span class="text-xs text-slate-400">Estimasi Layanan: 20 Menit</span>
+                            <button onclick="pilihPoliDanDaftar('KIA')" class="btn-gold text-sm py-2.5 px-5">Daftar Poli KIA</button>
+                        </div>
+                    </div>
+
+                    <!-- Detail Poli Gizi -->
+                    <div class="glass-card rounded-3xl p-8 border border-gold-accent/30 space-y-6">
+                        <div class="flex items-center justify-between">
+                            <div class="w-16 h-16 rounded-2xl bg-emerald-950 border border-gold-accent/40 flex items-center justify-center text-gold-accent">
+                                <i data-lucide="apple" class="w-8 h-8"></i>
+                            </div>
+                            <span class="px-4 py-1.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-xs font-semibold">Konsultasi Diet</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-white mb-2 font-display">Poliklinik Gizi</h2>
+                            <p class="text-slate-300 text-sm leading-relaxed">Konsultasi diet klinis terpersonalisasi, manajemen berat badan profesional, dan pengaturan nutrisi khusus untuk penyembuhan penyakit metabolik.</p>
+                        </div>
+                        <div class="pt-4 border-t border-gold-accent/20 flex items-center justify-between">
+                            <span class="text-xs text-slate-400">Estimasi Layanan: 25 Menit</span>
+                            <button onclick="pilihPoliDanDaftar('Gizi')" class="btn-gold text-sm py-2.5 px-5">Daftar Poli Gizi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             3. DOCTOR SCHEDULE VIEW (JADWAL DOKTER)
+             ========================================================= -->
+        <section id="view-dokter" class="view-section py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <div class="text-center max-w-3xl mx-auto space-y-4">
+                    <span class="text-xs uppercase tracking-widest text-gold-accent font-semibold px-4 py-1.5 rounded-full bg-emerald-950 border border-gold-accent/30">Tenaga Medis Profesional</span>
+                    <h1 class="text-4xl font-bold font-display text-white">Jadwal Praktik Dokter Spesialis & Umum</h1>
+                    <p class="text-slate-300">Pilih dokter kepercayaan Anda dan pastikan jadwal praktik sebelum melakukan pendaftaran.</p>
+                </div>
+
+                <!-- Filter & Control Panel -->
+                <div class="glass-card rounded-2xl p-6 flex flex-wrap items-center justify-between gap-4 border border-gold-accent/30">
+                    <div class="flex items-center gap-3">
+                        <label for="filter-poli" class="text-sm font-semibold text-gold-accent">Filter Poliklinik:</label>
+                        <select id="filter-poli" onchange="renderJadwalDokter()" class="luxury-input text-sm py-2 px-4 rounded-xl">
+                            <option value="Semua">Semua Poliklinik</option>
+                            <option value="Umum">Poliklinik Umum</option>
+                            <option value="Gigi">Poliklinik Gigi</option>
+                            <option value="KIA">Kesehatan Ibu & Anak (KIA)</option>
+                            <option value="Gizi">Poliklinik Gizi</option>
+                        </select>
+                    </div>
+                    <button onclick="toggleTabelJadwal()" id="btn-toggle-tabel" class="btn-outline-gold text-xs py-2 px-4">
+                        Sembunyikan Tabel
+                    </button>
+                </div>
+
+                <!-- Doctor Table Container -->
+                <div id="wadah-tabel-dokter" class="glass-card rounded-3xl overflow-hidden border border-gold-accent/30 shadow-2xl">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-emerald-950/80 border-b border-gold-accent/30 text-gold-accent text-xs uppercase tracking-wider font-display">
+                                    <th class="py-4 px-6">No</th>
+                                    <th class="py-4 px-6">Nama Dokter</th>
+                                    <th class="py-4 px-6">Poliklinik</th>
+                                    <th class="py-4 px-6">Hari Praktik</th>
+                                    <th class="py-4 px-6">Jam Praktik</th>
+                                    <th class="py-4 px-6">Status</th>
+                                    <th class="py-4 px-6 text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabel-dokter-body" class="divide-y divide-slate-800/60 text-sm">
+                                <!-- Data populated via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             4. REGISTRATION VIEW (PENDAFTARAN ONLINE)
+             ========================================================= -->
+        <section id="view-pendaftaran" class="view-section py-8">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="glass-card rounded-3xl p-8 sm:p-12 border border-gold-accent/40 shadow-2xl space-y-8">
+                    <div class="text-center space-y-3 pb-6 border-b border-gold-accent/20">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-950 border border-gold-accent/40 flex items-center justify-center text-gold-accent mx-auto">
+                            <i data-lucide="clipboard-pen-line" class="w-7 h-7"></i>
+                        </div>
+                        <h1 class="text-3xl font-bold font-display text-white">Formulir Pendaftaran Pasien Online</h1>
+                        <p class="text-slate-300 text-sm">Lengkapi data diri Anda dengan benar untuk memperoleh nomor antrean digital prioritas.</p>
+                    </div>
+
+                    <form id="form-pendaftaran" onsubmit="handlePendaftaranSubmit(event)" class="space-y-6" novalidate>
+                        <!-- Nama Lengkap -->
+                        <div class="space-y-2">
+                            <label for="nama" class="block text-sm font-semibold text-slate-200">Nama Lengkap (Sesuai KTP) <span class="text-red-400">*</span></label>
+                            <input type="text" id="nama" class="w-full luxury-input" placeholder="Contoh: Budi Santoso">
+                            <div class="text-red-400 text-xs" id="error-nama"></div>
+                        </div>
+
+                        <!-- NIK -->
+                        <div class="space-y-2">
+                            <label for="nik" class="block text-sm font-semibold text-slate-200">NIK (Nomor Induk Kependudukan) <span class="text-red-400">*</span></label>
+                            <input type="text" id="nik" maxlength="16" class="w-full luxury-input" placeholder="16 digit nomor NIK KTP">
+                            <div class="text-red-400 text-xs" id="error-nik"></div>
+                        </div>
+
+                        <!-- Tanggal Lahir & Usia Otomatis -->
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="tgl-lahir" class="block text-sm font-semibold text-slate-200">Tanggal Lahir <span class="text-red-400">*</span></label>
+                                <input type="date" id="tgl-lahir" onchange="hitungUsiaOtomatis()" class="w-full luxury-input">
+                                <div class="text-red-400 text-xs" id="error-tgl-lahir"></div>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="tampil-usia" class="block text-sm font-semibold text-slate-200">Usia Saat Ini</label>
+                                <input type="text" id="tampil-usia" readonly class="w-full luxury-input bg-slate-900/40 text-gold-accent font-semibold" placeholder="Terhitung otomatis">
+                            </div>
+                        </div>
+
+                        <!-- Jenis Kelamin -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-semibold text-slate-200">Jenis Kelamin <span class="text-red-400">*</span></label>
+                            <div class="flex items-center gap-6 pt-1">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="gender" value="Laki-laki" class="text-gold-accent focus:ring-gold-accent">
+                                    <span class="text-sm text-slate-300">Laki-laki</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="radio" name="gender" value="Perempuan" class="text-gold-accent focus:ring-gold-accent">
+                                    <span class="text-sm text-slate-300">Perempuan</span>
+                                </label>
+                            </div>
+                            <div class="text-red-400 text-xs" id="error-gender"></div>
+                        </div>
+
+                        <!-- No HP & Email -->
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="no-hp" class="block text-sm font-semibold text-slate-200">Nomor HP (WhatsApp Aktif) <span class="text-red-400">*</span></label>
+                                <input type="tel" id="no-hp" class="w-full luxury-input" placeholder="Contoh: 081234567890">
+                                <div class="text-red-400 text-xs" id="error-no-hp"></div>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="email" class="block text-sm font-semibold text-slate-200">Alamat Email <span class="text-slate-400 text-xs font-normal">(Opsional)</span></label>
+                                <input type="email" id="email" class="w-full luxury-input" placeholder="nama@email.com">
+                                <div class="text-red-400 text-xs" id="error-email"></div>
+                            </div>
+                        </div>
+
+                        <hr class="border-gold-accent/20 my-4">
+
+                        <!-- Pilih Poliklinik & Dokter -->
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="poli" class="block text-sm font-semibold text-slate-200">Pilih Poliklinik <span class="text-red-400">*</span></label>
+                                <select id="poli" onchange="updateDokterDropdown()" class="w-full luxury-input">
+                                    <option value="">-- Pilih Poliklinik --</option>
+                                    <option value="Umum">Poliklinik Umum</option>
+                                    <option value="Gigi">Poliklinik Gigi</option>
+                                    <option value="KIA">Kesehatan Ibu & Anak (KIA)</option>
+                                    <option value="Gizi">Poliklinik Gizi</option>
+                                </select>
+                                <div class="text-red-400 text-xs" id="error-poli"></div>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="dokter" class="block text-sm font-semibold text-slate-200">Pilih Dokter Tujuan <span class="text-red-400">*</span></label>
+                                <select id="dokter" disabled class="w-full luxury-input">
+                                    <option value="">-- Pilih Poliklinik Dahulu --</option>
+                                </select>
+                                <div class="text-red-400 text-xs" id="error-dokter"></div>
+                            </div>
+                        </div>
+
+                        <!-- Tanggal Kunjungan -->
+                        <div class="space-y-2">
+                            <label for="tgl-kunjungan" class="block text-sm font-semibold text-slate-200">Tanggal Kunjungan <span class="text-red-400">*</span></label>
+                            <input type="date" id="tgl-kunjungan" class="w-full luxury-input">
+                            <p class="text-xs text-slate-400">Pendaftaran dapat dilakukan mulai hari ini hingga maksimal 14 hari ke depan.</p>
+                            <div class="text-red-400 text-xs" id="error-tgl-kunjungan"></div>
+                        </div>
+
+                        <!-- Keluhan Utama -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <label for="keluhan" class="block text-sm font-semibold text-slate-200">Keluhan Utama <span class="text-red-400">*</span></label>
+                                <span id="hitung-karakter" class="text-xs text-slate-400">0 / 200 karakter</span>
+                            </div>
+                            <textarea id="keluhan" rows="3" maxlength="200" oninput="updateKarakter(this)" class="w-full luxury-input" placeholder="Tuliskan keluhan atau gejala yang dialami (minimal 10 karakter)..."></textarea>
+                            <div class="text-red-400 text-xs" id="error-keluhan"></div>
+                        </div>
+
+                        <!-- Persetujuan Checkbox -->
+                        <div class="space-y-2">
+                            <label class="flex items-start gap-3 cursor-pointer">
+                                <input type="checkbox" id="persetujuan" class="mt-1 rounded text-gold-accent focus:ring-gold-accent">
+                                <span class="text-xs text-slate-300 leading-relaxed">Saya menyatakan bahwa data yang diisi adalah benar dan menyetujui kebijakan privasi serta syarat ketentuan pelayanan kesehatan di Klinik Pratama Sehat Nusantara. <span class="text-red-400">*</span></span>
+                            </label>
+                            <div class="text-red-400 text-xs" id="error-persetujuan"></div>
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="submit" class="w-full btn-gold py-4 text-base flex items-center justify-center gap-2">
+                                <i data-lucide="send" class="w-5 h-5"></i>
+                                <span>Kirim Pendaftaran & Dapatkan Antrean</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             5. QUEUE DASHBOARD VIEW (DASHBOARD ANTREAN)
+             ========================================================= -->
+        <section id="view-antrean" class="view-section py-8">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="text-xs uppercase tracking-widest text-gold-accent font-semibold px-4 py-1.5 rounded-full bg-emerald-950 border border-gold-accent/30">Live Monitoring</span>
+                    <h1 class="text-4xl font-bold font-display text-white">Dashboard Antrean Pasien Aktif</h1>
+                    <p class="text-slate-300">Pantau nomor antrean yang sedang dilayani di masing-masing poliklinik secara real-time.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Poli Umum Card -->
+                    <div class="glass-card rounded-2xl p-6 border border-gold-accent/30 text-center space-y-4">
+                        <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Poliklinik Umum</span>
+                        <div class="text-4xl font-extrabold text-gold-accent font-display" id="live-umum">UMUM-104</div>
+                        <p class="text-xs text-emerald-400">Sedang Dilayani</p>
+                    </div>
+                    <!-- Poli Gigi Card -->
+                    <div class="glass-card rounded-2xl p-6 border border-gold-accent/30 text-center space-y-4">
+                        <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Poliklinik Gigi</span>
+                        <div class="text-4xl font-extrabold text-gold-accent font-display" id="live-gigi">GIGI-202</div>
+                        <p class="text-xs text-emerald-400">Sedang Dilayani</p>
+                    </div>
+                    <!-- Poli KIA Card -->
+                    <div class="glass-card rounded-2xl p-6 border border-gold-accent/30 text-center space-y-4">
+                        <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Kesehatan Ibu & Anak</span>
+                        <div class="text-4xl font-extrabold text-gold-accent font-display" id="live-kia">KIA-301</div>
+                        <p class="text-xs text-emerald-400">Sedang Dilayani</p>
+                    </div>
+                    <!-- Poli Gizi Card -->
+                    <div class="glass-card rounded-2xl p-6 border border-gold-accent/30 text-center space-y-4">
+                        <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Poliklinik Gizi</span>
+                        <div class="text-4xl font-extrabold text-gold-accent font-display" id="live-gizi">GIZI-401</div>
+                        <p class="text-xs text-emerald-400">Sedang Dilayani</p>
+                    </div>
+                </div>
+
+                <!-- Recent Registrations Table -->
+                <div class="glass-card rounded-3xl p-6 sm:p-8 border border-gold-accent/30 space-y-6">
+                    <h2 class="text-xl font-bold font-display text-white flex items-center gap-2">
+                        <i data-lucide="history" class="w-5 h-5 text-gold-accent"></i> Riwayat Pasien Terdaftar Sesi Ini
+                    </h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-emerald-950/80 border-b border-gold-accent/30 text-gold-accent text-xs uppercase tracking-wider font-display">
+                                    <th class="py-3 px-4">No Antrean</th>
+                                    <th class="py-3 px-4">Nama Pasien</th>
+                                    <th class="py-3 px-4">Poliklinik</th>
+                                    <th class="py-3 px-4">Dokter Tujuan</th>
+                                    <th class="py-3 px-4">Tanggal Kunjungan</th>
+                                    <th class="py-3 px-4 text-center">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabel-pasien-terdaftar" class="divide-y divide-slate-800/60 text-sm">
+                                <tr>
+                                    <td colspan="6" class="text-center py-6 text-slate-400">Belum ada data pendaftaran baru pada sesi ini.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Ringkasan Tiket Antrean (Bootstrap Modal) -->
+    <div class="modal fade" id="modalRingkasan" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content glass-card border border-gold-accent/50 rounded-3xl text-slate-100 p-2">
+                <div class="modal-header border-b border-gold-accent/20 pb-4">
+                    <h5 class="modal-title font-display font-bold text-lg text-gold-accent flex items-center gap-2">
+                        <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-400"></i> Pendaftaran Berhasil!
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-6 space-y-4" id="isi-ringkasan-tiket">
+                    <!-- Populated dynamically -->
+                </div>
+                <div class="modal-footer border-t border-gold-accent/20 pt-4 flex gap-3">
+                    <button type="button" class="btn-outline-gold text-xs w-full py-2.5" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" onclick="switchView('antrean'); bootstrap.Modal.getInstance(document.getElementById('modalRingkasan')).hide();" class="btn-gold text-xs w-full py-2.5">Cek Dashboard Antrean</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Luxury Footer -->
+    <footer class="glass-nav mt-auto border-t border-gold-accent/20 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-950 border border-gold-accent/40 flex items-center justify-center text-gold-accent">
+                            <i data-lucide="crown" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white font-display">Klinik Pratama Sehat Nusantara</span>
+                    </div>
+                    <p class="text-sm text-slate-400">Pusat pelayanan kesehatan primer eksekutif di Kota Kediri yang mengutamakan privasi, kecepatan, dan kenyamanan paripurna.</p>
+                </div>
+                <div class="md:text-right space-y-2 text-sm text-slate-400">
+                    <p><i data-lucide="map-pin" class="w-4 h-4 inline mr-1 text-gold-accent"></i> Kota Kediri, Jawa Timur</p>
+                    <p><i data-lucide="clock" class="w-4 h-4 inline mr-1 text-gold-accent"></i> Senin – Sabtu: 08.00 – 15.00 WIB</p>
+                    <p class="text-xs text-slate-500 pt-2">&copy; 2026 Klinik Pratama Sehat Nusantara. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Main JavaScript Logic -->
+    <script>
+        // Inisialisasi ikon Lucide
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+            setSapaanDinamis();
+            renderJadwalDokter();
+            inisialisasiTanggalKunjungan();
+        });
+
+        // 1. Data Array Objek Dokter
+        const dataDokter = [
+            { id: 1, nama: "dr. Arief Rahman, Sp.PD", poli: "Umum", hari: "Senin, Rabu, Jumat", jam: "08:00 - 12:00", status: "Praktik" },
+            { id: 2, nama: "dr. Siska Melina", poli: "Umum", hari: "Selasa, Kamis, Sabtu", jam: "08:00 - 12:00", status: "Praktik" },
+            { id: 3, nama: "drg. Budi Santoso", poli: "Gigi", hari: "Senin s.d. Kamis", jam: "09:00 - 14:00", status: "Praktik" },
+            { id: 4, nama: "drg. Anisa Putri", poli: "Gigi", hari: "Jumat, Sabtu", jam: "09:00 - 13:00", status: "Cuti" },
+            { id: 5, nama: "dr. Rian Hidayat, Sp.A", poli: "KIA", hari: "Senin, Selasa, Kamis", jam: "08:00 - 13:00", status: "Praktik" },
+            { id: 6, nama: "dr. Diana Lestari, M.Gizi", poli: "Gizi", hari: "Rabu, Jumat", jam: "10:00 - 14:00", status: "Praktik" }
+        ];
+
+        // Storage riwayat pasien terdaftar
+        let daftarPasienGlobal = [];
+
+        // 2. View Switcher Routing
+        function switchView(viewId) {
+            document.querySelectorAll('.view-section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            const target = document.getElementById(`view-${viewId}`);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // 3. Sapaan Waktu Otomatis
+        function setSapaanDinamis() {
+            const el = document.getElementById('sapaan-pengguna');
+            if(!el) return;
+            const jam = new Date().getHours();
+            let waktu = "Pagi";
+            if (jam >= 11 && jam < 15) waktu = "Siang";
+            else if (jam >= 15 && jam < 18) waktu = "Sore";
+            else if (jam >= 18 || jam < 4) waktu = "Malam";
+
+            el.innerHTML = `Selamat ${waktu}! Klinik Pratama Sehat Nusantara hadir dengan standar pelayanan medis privasi tertinggi di Kota Kediri.`;
+        }
+
+        // 4. Render & Filter Tabel Jadwal Dokter
+        let isTabelVisible = true;
+        function toggleTabelJadwal() {
+            const wadah = document.getElementById('wadah-tabel-dokter');
+            const btn = document.getElementById('btn-toggle-tabel');
+            isTabelVisible = !isTabelVisible;
+            if(isTabelVisible) {
+                wadah.style.display = 'block';
+                btn.innerText = 'Sembunyikan Tabel';
+            } else {
+                wadah.style.display = 'none';
+                btn.innerText = 'Tampilkan Tabel';
+            }
+        }
+
+        function renderJadwalDokter() {
+            const tbody = document.getElementById('tabel-dokter-body');
+            const filter = document.getElementById('filter-poli').value;
+            if(!tbody) return;
+
+            tbody.innerHTML = '';
+            const filtered = filter === 'Semua' ? dataDokter : dataDokter.filter(d => d.poli === filter);
+
+            if(filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-6 text-slate-400">Tidak ada jadwal dokter untuk poliklinik ini.</td></tr>`;
+                return;
+            }
+
+            filtered.forEach((dok, idx) => {
+                const badgeColor = dok.status === 'Praktik' ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-rose-500/20 text-rose-400 border-rose-500/30';
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-900/40 transition-colors">
+                        <td class="py-4 px-6 font-semibold">${idx + 1}</td>
+                        <td class="py-4 px-6 font-bold text-white">${dok.nama}</td>
+                        <td class="py-4 px-6 text-slate-300">Poliklinik ${dok.poli}</td>
+                        <td class="py-4 px-6 text-slate-300">${dok.hari}</td>
+                        <td class="py-4 px-6 text-slate-300">${dok.jam}</td>
+                        <td class="py-4 px-6"><span class="px-3 py-1 rounded-full text-xs border ${badgeColor}">${dok.status}</span></td>
+                        <td class="py-4 px-6 text-center">
+                            <button onclick="pilihDokterDanDaftar('${dok.poli}', '${dok.nama}')" class="btn-gold text-xs py-1.5 px-3">Daftar</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function pilihPoliDanDaftar(poli) {
+            switchView('pendaftaran');
+            document.getElementById('poli').value = poli;
+            updateDokterDropdown();
+        }
+
+        function pilihDokterDanDaftar(poli, namaDokter) {
+            switchView('pendaftaran');
+            document.getElementById('poli').value = poli;
+            updateDokterDropdown();
+            document.getElementById('dokter').value = namaDokter;
+        }
+
+        // 5. Form Pendaftaran Logic & Validasi
+        function inisialisasiTanggalKunjungan() {
+            const tglKunjungan = document.getElementById('tgl-kunjungan');
+            if(tglKunjungan) {
+                const today = new Date();
+                const max = new Date();
+                max.setDate(today.getDate() + 14);
+                tglKunjungan.min = today.toISOString().split('T')[0];
+                tglKunjungan.max = max.toISOString().split('T')[0];
+            }
+        }
+
+        function hitungUsiaOtomatis() {
+            const val = document.getElementById('tgl-lahir').value;
+            const target = document.getElementById('tampil-usia');
+            if(!val) { target.value = ''; return; }
+            const lahir = new Date(val);
+            const now = new Date();
+            let tahun = now.getFullYear() - lahir.getFullYear();
+            let bulan = now.getMonth() - lahir.getMonth();
+            if(bulan < 0 || (bulan === 0 && now.getDate() < lahir.getDate())) tahun--;
+            target.value = `${tahun} Tahun`;
+        }
+
+        function updateDokterDropdown() {
+            const poliVal = document.getElementById('poli').value;
+            const dokterSelect = document.getElementById('dokter');
+            dokterSelect.innerHTML = '<option value="">-- Pilih Dokter --</option>';
+            if(poliVal) {
+                dokterSelect.removeAttribute('disabled');
+                const list = dataDokter.filter(d => d.poli === poliVal);
+                list.forEach(d => {
+                    dokterSelect.innerHTML += `<option value="${d.nama}">${d.nama} (${d.hari})</option>`;
+                });
+            } else {
+                dokterSelect.setAttribute('disabled', 'true');
+            }
+        }
+
+        function updateKarakter(el) {
+            document.getElementById('hitung-karakter').innerText = `${el.value.length} / 200 karakter`;
+        }
+
+        function handlePendaftaranSubmit(e) {
+            e.preventDefault();
+            // Reset error
+            document.querySelectorAll('.text-red-400').forEach(el => el.innerText = '');
+
+            const nama = document.getElementById('nama').value.trim();
+            const nik = document.getElementById('nik').value.trim();
+            const tglLahir = document.getElementById('tgl-lahir').value;
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const noHp = document.getElementById('no-hp').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const poli = document.getElementById('poli').value;
+            const dokter = document.getElementById('dokter').value;
+            const tglKunjungan = document.getElementById('tgl-kunjungan').value;
+            const keluhan = document.getElementById('keluhan').value.trim();
+            const persetujuan = document.getElementById('persetujuan').checked;
+
+            let isValid = true;
+
+            const regexNama = /^[A-Za-z\s]{3,}$/;
+            if(!regexNama.test(nama)) {
+                document.getElementById('error-nama').innerText = 'Nama lengkap wajib diisi, minimal 3 karakter (hanya huruf & spasi).';
+                isValid = false;
+            }
+
+            const regexNik = /^\d{16}$/;
+            if(!regexNik.test(nik)) {
+                document.getElementById('error-nik').innerText = 'NIK wajib diisi tepat 16 digit angka.';
+                isValid = false;
+            }
+
+            if(!tglLahir) {
+                document.getElementById('error-tgl-lahir').innerText = 'Tanggal lahir wajib dipilih.';
+                isValid = false;
+            }
+
+            if(!gender) {
+                document.getElementById('error-gender').innerText = 'Pilih salah satu jenis kelamin.';
+                isValid = false;
+            }
+
+            const regexHp = /^(08|62)\d{8,12}$/;
+            if(!regexHp.test(noHp)) {
+                document.getElementById('error-no-hp').innerText = 'Nomor HP tidak valid (format: 08xxx atau 62xxx).';
+                isValid = false;
+            }
+
+            if(email && !email.includes('@')) {
+                document.getElementById('error-email').innerText = 'Format email tidak valid.';
+                isValid = false;
+            }
+
+            if(!poli) {
+                document.getElementById('error-poli').innerText = 'Pilih poliklinik tujuan.';
+                isValid = false;
+            }
+
+            if(!dokter) {
+                document.getElementById('error-dokter').innerText = 'Pilih dokter praktik.';
+                isValid = false;
+            }
+
+            if(!tglKunjungan) {
+                document.getElementById('error-tgl-kunjungan').innerText = 'Pilih tanggal kunjungan.';
+                isValid = false;
+            }
+
+            if(keluhan.length < 10 || keluhan.length > 200) {
+                document.getElementById('error-keluhan').innerText = 'Keluhan utama wajib diisi antara 10 hingga 200 karakter.';
+                isValid = false;
+            }
+
+            if(!persetujuan) {
+                document.getElementById('error-persetujuan').innerText = 'Anda harus menyetujui ketentuan layanan klinik.';
+                isValid = false;
+            }
+
+            if(isValid) {
+                const noAntrean = `${poli.toUpperCase().substring(0,4)}-${Math.floor(100 + Math.random() * 900)}`;
+                
+                // Simpan ke array global
+                const record = { noAntrean, nama, poli, dokter, tglKunjungan, status: 'Menunggu' };
+                daftarPasienGlobal.unshift(record);
+                updateTabelPasienTerdaftar();
+
+                // Tampilkan Modal Tiket
+                const isiModal = document.getElementById('isi-ringkasan-tiket');
+                isiModal.innerHTML = `
+                    <div class="text-center p-4 rounded-2xl bg-slate-900 border border-gold-accent/40 space-y-2">
+                        <span class="text-xs uppercase tracking-widest text-slate-400">Nomor Antrean Anda</span>
+                        <div class="text-4xl font-extrabold text-gold-accent font-display">${noAntrean}</div>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs bg-emerald-500/20 text-emerald-400">Prioritas VIP</span>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-300 pt-2">
+                        <li class="flex justify-between border-b border-slate-800 pb-1"><span>Nama Pasien:</span> <strong class="text-white">${nama}</strong></li>
+                        <li class="flex justify-between border-b border-slate-800 pb-1"><span>Poliklinik:</span> <strong class="text-white">Poli ${poli}</strong></li>
+                        <li class="flex justify-between border-b border-slate-800 pb-1"><span>Dokter:</span> <strong class="text-white">${dokter}</strong></li>
+                        <li class="flex justify-between border-b border-slate-800 pb-1"><span>Tgl Kunjungan:</span> <strong class="text-white">${tglKunjungan}</strong></li>
+                    </ul>
+                    <p class="text-xs text-amber-300/90 text-center pt-2">Harap hadir 15 menit sebelum jadwal dengan membawa KTP/KIA asli.</p>
+                `;
+
+                const modal = new bootstrap.Modal(document.getElementById('modalRingkasan'));
+                modal.show();
+                document.getElementById('form-pendaftaran').reset();
+                document.getElementById('tampil-usia').value = '';
+            }
+        }
+
+        function updateTabelPasienTerdaftar() {
+            const tbody = document.getElementById('tabel-pasien-terdaftar');
+            if(!tbody) return;
+
+            tbody.innerHTML = '';
+            daftarPasienGlobal.forEach(p => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-900/40 transition-colors">
+                        <td class="py-3 px-4 font-bold text-gold-accent">${p.noAntrean}</td>
+                        <td class="py-3 px-4 text-white">${p.nama}</td>
+                        <td class="py-3 px-4 text-slate-300">Poli ${p.poli}</td>
+                        <td class="py-3 px-4 text-slate-300">${p.dokter}</td>
+                        <td class="py-3 px-4 text-slate-300">${p.tglKunjungan}</td>
+                        <td class="py-3 px-4 text-center"><span class="px-2.5 py-1 rounded-full text-xs bg-amber-500/20 text-amber-400 border border-amber-500/30">${p.status}</span></td>
+                    </tr>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>
+<!-- Inisialisasi repositori oleh Wahyu -->

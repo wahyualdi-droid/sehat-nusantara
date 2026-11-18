@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Online - Klinik Pratama Sehat Nusantara</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header & Navigasi -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-success d-flex align-items-center gap-2" href="index.html">
+                    <i class="bi bi-heart-pulse-fill fs-3 text-success"></i>
+                    <span>Sehat Nusantara</span>
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav align-items-lg-center">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="layanan.html">Layanan</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dokter.html">Jadwal Dokter</a></li>
+                        <li class="nav-item mt-2 mt-lg-0">
+                            <a class="btn btn-primary ms-lg-3 px-4" href="pendaftaran.html">
+                                <i class="bi bi-calendar-check me-1"></i> Daftar Online
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="mt-5 pt-5 pb-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card card-luxury">
+                        <div class="card-header bg-success text-white p-4 border-0" style="background-color: var(--primary-emerald) !important;">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="bg-white bg-opacity-10 p-3 rounded-3">
+                                    <i class="bi bi-clipboard2-pulse fs-2 text-warning"></i>
+                                </div>
+                                <div>
+                                    <h1 class="h4 mb-0 fw-bold">Formulir Pendaftaran Pasien Online</h1>
+                                    <p class="small mb-0 opacity-75">Isi data diri dengan benar untuk memperoleh nomor antrean digital</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-4 p-md-5">
+                            <form id="form-pendaftaran" novalidate>
+                                <!-- 1. Nama Lengkap -->
+                                <div class="mb-3">
+                                    <label for="nama" class="form-label fw-semibold">Nama Lengkap <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama sesuai KTP">
+                                    <div class="text-danger small mt-1" id="error-nama"></div>
+                                </div>
+
+                                <!-- 2. NIK -->
+                                <div class="mb-3">
+                                    <label for="nik" class="form-label fw-semibold">NIK (Nomor Induk Kependudukan) <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="nik" maxlength="16" placeholder="Tepat 16 digit angka NIK">
+                                    <div class="text-danger small mt-1" id="error-nik"></div>
+                                </div>
+
+                                <!-- 3. Tanggal Lahir & Usia Otomatis -->
+                                <div class="row mb-3">
+                                    <div class="col-md-7">
+                                        <label for="tgl-lahir" class="form-label fw-semibold">Tanggal Lahir <span class="text-danger">*</span></label>
+                                        <input type="date" class="form-control" id="tgl-lahir">
+                                        <div class="text-danger small mt-1" id="error-tgl-lahir"></div>
+                                    </div>
+                                    <div class="col-md-5 mt-3 mt-md-0">
+                                        <label class="form-label fw-semibold">Usia Saat Ini</label>
+                                        <input type="text" class="form-control bg-light" id="tampil-usia" readonly placeholder="Otomatis terhitung">
+                                    </div>
+                                </div>
+
+                                <!-- 4. Jenis Kelamin -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold d-block">Jenis Kelamin <span class="text-danger">*</span></label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="jk-l" value="Laki-laki">
+                                        <label class="form-check-label" for="jk-l">Laki-laki</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="jk-p" value="Perempuan">
+                                        <label class="form-check-label" for="jk-p">Perempuan</label>
+                                    </div>
+                                    <div class="text-danger small mt-1" id="error-gender"></div>
+                                </div>
+
+                                <!-- 5. Nomor HP & 6. Email -->
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="no-hp" class="form-label fw-semibold">Nomor HP (WhatsApp) <span class="text-danger">*</span></label>
+                                        <input type="tel" class="form-control" id="no-hp" placeholder="Contoh: 081234567890">
+                                        <div class="text-danger small mt-1" id="error-no-hp"></div>
+                                    </div>
+                                    <div class="col-md-6 mt-3 mt-md-0">
+                                        <label for="email" class="form-label fw-semibold">Email <span class="text-muted small">(Opsional)</span></label>
+                                        <input type="email" class="form-control" id="email" placeholder="nama@email.com">
+                                        <div class="text-danger small mt-1" id="error-email"></div>
+                                    </div>
+                                </div>
+
+                                <hr class="my-4 text-muted opacity-25">
+
+                                <!-- 7. Poliklinik & 8. Dokter -->
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="poli" class="form-label fw-semibold">Pilih Poliklinik <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="poli">
+                                            <option value="">-- Pilih Poliklinik --</option>
+                                            <option value="Umum">Poliklinik Umum</option>
+                                            <option value="Gigi">Poliklinik Gigi</option>
+                                            <option value="KIA">Kesehatan Ibu dan Anak (KIA)</option>
+                                            <option value="Gizi">Poliklinik Gizi</option>
+                                        </select>
+                                        <div class="text-danger small mt-1" id="error-poli"></div>
+                                    </div>
+                                    <div class="col-md-6 mt-3 mt-md-0">
+                                        <label for="dokter" class="form-label fw-semibold">Pilih Dokter <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="dokter" disabled>
+                                            <option value="">-- Pilih Poliklinik Dahulu --</option>
+                                        </select>
+                                        <div class="text-danger small mt-1" id="error-dokter"></div>
+                                    </div>
+                                </div>
+
+                                <!-- 9. Tanggal Kunjungan -->
+                                <div class="mb-3">
+                                    <label for="tgl-kunjungan" class="form-label fw-semibold">Tanggal Kunjungan <span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" id="tgl-kunjungan">
+                                    <div class="form-text">Dapat didaftarkan mulai hari ini hingga maksimal 14 hari ke depan.</div>
+                                    <div class="text-danger small mt-1" id="error-tgl-kunjungan"></div>
+                                </div>
+
+                                <!-- 10. Keluhan -->
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <label for="keluhan" class="form-label fw-semibold">Keluhan Utama <span class="text-danger">*</span></label>
+                                        <span class="small text-muted" id="hitung-karakter">0 / 200 karakter</span>
+                                    </div>
+                                    <textarea class="form-control" id="keluhan" rows="3" maxlength="200" placeholder="Jelaskan keluhan Anda minimal 10 karakter..."></textarea>
+                                    <div class="text-danger small mt-1" id="error-keluhan"></div>
+                                </div>
+
+                                <!-- 11. Persetujuan Data -->
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="persetujuan">
+                                        <label class="form-check-label small text-muted" for="persetujuan">
+                                            Saya menyatakan bahwa data yang diisi adalah benar dan menyetujui penggunaan data untuk keperluan administrasi Klinik Pratama Sehat Nusantara. <span class="text-danger">*</span>
+                                        </label>
+                                    </div>
+                                    <div class="text-danger small mt-1" id="error-persetujuan"></div>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="bi bi-send-check me-2"></i>Kirim Pendaftaran
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Ringkasan Pendaftaran -->
+    <div class="modal fade" id="modalRingkasan" tabindex="-1" aria-labelledby="modalRingkasanLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header text-white border-0 py-3" style="background-color: var(--primary-emerald);">
+                    <h5 class="modal-title fw-bold" id="modalRingkasanLabel"><i class="bi bi-check-circle-fill me-2 text-warning"></i>Pendaftaran Berhasil!</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <div class="modal-body p-4" id="isi-ringkasan">
+                    <!-- Diisi dinamis oleh JavaScript -->
+                </div>
+                <div class="modal-footer border-0 pt-0 pb-4 px-4">
+                    <button type="button" class="btn btn-secondary w-100 rounded-3" data-bs-dismiss="modal">Selesai & Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-luxury">
+        <div class="container">
+            <div class="row gy-4 justify-content-between">
+                <div class="col-md-5">
+                    <h5 class="text-white fw-bold mb-2"><i class="bi bi-heart-pulse-fill text-warning me-2"></i>Klinik Pratama Sehat Nusantara</h5>
+                    <p class="small mb-0 text-muted">Memberikan pelayanan kesehatan primer yang bermutu tinggi, profesional, dan berorientasi pada kepuasan pasien di Kota Kediri.</p>
+                </div>
+                <div class="col-md-4 text-md-end text-muted">
+                    <p class="small mb-1"><i class="bi bi-clock me-1 text-warning"></i> Senin – Sabtu: 08.00 – 15.00 WIB</p>
+                    <p class="small mb-0"><i class="bi bi-telephone me-1 text-warning"></i> (0354) 123-456 • Kediri, Jawa Timur</p>
+                </div>
+            </div>
+            <hr class="border-secondary my-4 opacity-25">
+            <p class="text-center small mb-0 text-muted">&copy; 2026 Klinik Pratama Sehat Nusantara. Dikembangkan oleh Tim Web Developer SI UNP Kediri.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
